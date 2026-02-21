@@ -27,7 +27,7 @@ html, body {
   width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly; /* evenly space content */
+  justify-content: space-evenly; /* evenly spread all elements */
   align-items: center;
   padding: 5px;
 }
@@ -41,16 +41,16 @@ h1 {
   line-height: 1;
 }
 
-/* Instruction & personalized texts */
+/* Personalized message */
 #message, #guest-name, #num-guests,
 p.instruction {
-  font-size: 6vw;
+  font-size: 6vw; /* enhanced size */
   color: #74583e;
   margin: 5px 0;
   line-height: 1.2;
 }
 
-/* RSVP buttons container */
+/* RSVP buttons */
 div.rsvp-buttons {
   display: flex;
   justify-content: center;
@@ -58,9 +58,8 @@ div.rsvp-buttons {
   margin-top: 5px; /* closer to question */
 }
 
-/* Yes / No buttons */
 button.confirm, button.decline {
-  font-size: 4vw;
+  font-size: 4vw; /* smaller text to fit in middle */
   padding: 10px 25px;
   border-radius: 12px;
   border: none;
@@ -70,27 +69,31 @@ button.confirm, button.decline {
   max-width: 120px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   transition: all 0.2s ease;
-  background: linear-gradient(90deg, #c8a96a, #b8860b);
+}
+
+button.confirm, button.decline {
+  background: linear-gradient(90deg, #c8a96a, #b8860b); /* gold buttons */
   color: white;
 }
+
 button.confirm:hover, button.decline:hover { transform: scale(1.05); }
 
 /* Love message textarea */
 textarea {
   width: 90%;
   max-width: 400px;
-  height: 120px;
+  height: 100px;
   padding: 15px;
-  font-size: 5vw;
+  font-size: 5vw; /* bigger text */
   border-radius: 15px;
   border: none;
-  background-color: #fff3f0;
+  background-color: #fff3f0; /* soft modern box */
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   resize: none;
-  margin-top: 5px;
+  margin-top: 5px; /* closer to "Share your love..." */
 }
 
-/* Submit button */
+/* Modern submit button in Georges & Yara color */
 button#submit {
   font-size: 5vw;
   padding: 15px 40px;
@@ -100,16 +103,17 @@ button#submit {
   width: 70%;
   max-width: 300px;
   color: white;
-  background: #74583e;
+  background: #74583e; /* same as names */
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
   transition: all 0.3s ease;
 }
+
 button#submit:hover {
   transform: scale(1.05);
   background: #5c4631;
 }
 
-/* Responsive tweaks */
+/* Mobile tweaks */
 @media (max-width: 480px) {
   h1 { font-size: 16vw; }
   #message, #guest-name, #num-guests, p.instruction { font-size: 7vw; }
@@ -126,7 +130,7 @@ button#submit:hover {
 
   <p class="instruction">Honor us with your presence</p>
   <p id="guest-name"></p>
-  <p class="instruction">Please reply before the 1st of June, 2026</p>
+  <p class="instruction">Please reply before June 7, 2026</p>
   <p class="instruction">Number of persons invited: <span id="num-guests"></span></p>
 
   <p class="instruction">Are you attending:</p>
@@ -149,22 +153,19 @@ const guests = params.get("guests");
 
 // Fill personalized sections
 if(name && guests){
-  document.getElementById("message").innerHTML = "Dear <b>" + name + "</b>,";
+  document.getElementById("message").innerHTML = "Chère <b>" + name + "</b>,";
   document.getElementById("guest-name").innerText = name;
   document.getElementById("num-guests").innerText = guests;
 }
 
-// Track RSVP selection silently
+// Track RSVP selection
 let attending = null;
 function selectAttendance(choice){
   attending = choice;
-  // Highlight selected button
-  const buttons = document.querySelectorAll('.rsvp-buttons button');
-  buttons.forEach(btn => btn.style.opacity = '0.6'); // dim all
   if(choice){
-    document.querySelector('button.confirm').style.opacity = '1';
+    alert("Merci pour votre confirmation");
   } else {
-    document.querySelector('button.decline').style.opacity = '1';
+    alert("Merci de nous avoir informés");
   }
 }
 
