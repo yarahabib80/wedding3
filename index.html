@@ -130,7 +130,7 @@ button#submit:hover {
 
   <p class="instruction">Honor us with your presence</p>
   <p id="guest-name"></p>
-  <p class="instruction">Please reply before June 7, 2026</p>
+  <p class="instruction">Please reply before the 1st of June, 2026</p>
   <p class="instruction">Number of persons invited: <span id="num-guests"></span></p>
 
   <p class="instruction">Are you attending:</p>
@@ -153,7 +153,7 @@ const guests = params.get("guests");
 
 // Fill personalized sections
 if(name && guests){
-  document.getElementById("message").innerHTML = "Chère <b>" + name + "</b>,";
+  document.getElementById("message").innerHTML = "Dear <b>" + name + "</b>,";
   document.getElementById("guest-name").innerText = name;
   document.getElementById("num-guests").innerText = guests;
 }
@@ -163,9 +163,9 @@ let attending = null;
 function selectAttendance(choice){
   attending = choice;
   if(choice){
-    alert("Merci pour votre confirmation");
+    alert("Thank you for your confirmation.");
   } else {
-    alert("Merci de nous avoir informés");
+    alert("Thank you for letting us know.");
   }
 }
 
